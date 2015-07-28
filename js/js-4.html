@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="HatenaApp">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hatena-Intern-Exercise : JavaScript 4</title>
+  <meta name="viewport" content="initial-scale=1" />
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    th {
+      border: solid 1px rgb(63,81,181);
+      background-color: rgb(63,81,181);
+      color: #fff;
+      padding: 6px 6px 6px 12px;
+    }
+
+    td {
+      border: solid 1px rgb(63,81,181);
+      color: #4F6B72;
+      padding: 6px 6px 6px 12px;
+    }
+    th {
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-align: left;
+    }
+
+  </style>
+</head>
+
+<body layout="row" ng-controller="AppCtrl">
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" flex md-is-open="true" md-is-locked-open="true">
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Search Setting</h1>
+    </md-toolbar>
+    <fieldset class="standard">
+      <legend>Protocol</legend>
+      <div layout="column" layout-wrap="">
+        <div flex="50">
+          <md-checkbox ng-model="protocol.get" aria-label="get">
+            GET
+          </md-checkbox>
+        </div>
+        <div flex="50">
+          <md-checkbox ng-model="protocol.post" aria-label="post">
+            POST
+          </md-checkbox>
+        </div>
+      </div>
+    </fieldset>
+    <md-input-container class="md-icon-float">
+      <md-icon>find_in_page</md-icon>
+      <input ng-model="path" type="text" placeholder="Find By Path">
+    </md-input-container>
+    <md-input-container class="md-icon-float">
+      <md-icon>person</md-icon>
+      <input ng-model="user" type="text" placeholder="User Name">
+    </md-input-container>
+  </md-sidenav>
+  <div class="" flex>
+    <md-content class="md-padding">
+      <table>
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Status</th>
+            <th>Path</th>
+            <th>User</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="log in logs | filter:myFilter | orderBy:myOrder">
+            <td>{{log.protocol}}</td>
+            <td>{{log.status}}</td>
+            <td>{{log.path}}</td>
+            <td>{{log.user}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-content>
+  </div>
+  <script src="main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+  <script src="js-4.js"></script>
+  <script type="text/ng-template" id="dialog.html">
+    <md-dialog aria-label="input log" flex="50">
+      <md-dialog-content>
+        <md-input-container>
+          <label>log</label>
+          <textarea ng-model="log" style="max-height: 200px;"></textarea>
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="answer()">input</md-button>
+      </md-dialog-content>
+    </md-dialog>
+  </script>
+</body>
+
+</html>

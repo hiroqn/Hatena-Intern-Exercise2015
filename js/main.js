@@ -18,7 +18,7 @@ function parseLTSVLog (logStr) {
   }).map(function (lineStr) {
     return lineStr.split('\t').reduce(function (prev, elemStr) {
       var temp = elemStr.split(':');
-      prev[temp[0]] = typeConverter(temp[0], temp[1]);
+      prev[temp[0]] = typeConverter(temp[0], temp.slice(1).join(':'));
       return prev;
     }, {});
   });
